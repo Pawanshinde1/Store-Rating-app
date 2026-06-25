@@ -83,12 +83,6 @@ cd backend
 npm install
 ```
 
-Copy environment file and update values:
-
-```bash
-cp .env.example .env
-```
-
 Run Prisma migrations and seed:
 
 ```bash
