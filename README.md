@@ -106,12 +106,6 @@ cd frontend
 npm install
 ```
 
-Copy environment file:
-
-```bash
-cp .env.example .env
-```
-
 Start the development server:
 
 ```bash
