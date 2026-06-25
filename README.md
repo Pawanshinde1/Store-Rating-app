@@ -89,16 +89,6 @@ Copy environment file and update values:
 cp .env.example .env
 ```
 
-Edit `.env` with your database credentials:
-
-```env
-DATABASE_URL="postgresql://postgres:password@localhost:5432/store_rating_db?schema=public"
-JWT_SECRET="your-super-secret-jwt-key-change-in-production"
-JWT_EXPIRES_IN="7d"
-PORT=5000
-NODE_ENV=development
-```
-
 Run Prisma migrations and seed:
 
 ```bash
@@ -135,87 +125,6 @@ npm run dev
 ```
 
 The app will run at `http://localhost:5173`
-
-## Default Seed Credentials
-
-| Role        | Email                    | Password   |
-|-------------|--------------------------|------------|
-| Admin       | admin@storerating.com    | Admin@123  |
-| Store Owner | owner@storerating.com    | Owner@123  |
-| User        | user@storerating.com     | User@1234  |
-
-## API Endpoints
-
-### Authentication
-| Method | Endpoint                  | Access        | Description           |
-|--------|---------------------------|---------------|-----------------------|
-| POST   | /api/auth/register        | Public        | Register normal user  |
-| POST   | /api/auth/login           | Public        | Login                 |
-| POST   | /api/auth/logout          | Authenticated | Logout                |
-| GET    | /api/auth/profile         | Authenticated | Get profile           |
-| PUT    | /api/auth/change-password | Authenticated | Change password       |
-
-### Users (Admin only)
-| Method | Endpoint          | Description                    |
-|--------|-------------------|--------------------------------|
-| POST   | /api/users        | Create user/admin/store owner  |
-| GET    | /api/users        | List users (search, filter, sort, paginate) |
-| GET    | /api/users/:id    | Get user by ID                 |
-
-### Stores
-| Method | Endpoint                | Access              | Description              |
-|--------|-------------------------|---------------------|--------------------------|
-| GET    | /api/stores             | All authenticated   | List stores              |
-| GET    | /api/stores/my-store    | Store Owner         | Get owned store          |
-| GET    | /api/stores/:id         | All authenticated   | Get store by ID          |
-| GET    | /api/stores/:id/ratings| Store Owner         | Get store ratings        |
-| POST   | /api/stores             | Admin               | Create store             |
-
-### Ratings (User only)
-| Method | Endpoint                | Description              |
-|--------|-------------------------|--------------------------|
-| GET    | /api/ratings            | Get user's ratings       |
-| POST   | /api/ratings            | Submit rating            |
-| GET    | /api/ratings/:storeId   | Get user's rating for store |
-| PUT    | /api/ratings/:storeId   | Update rating            |
-
-### Dashboard
-| Method | Endpoint                    | Access      | Description        |
-|--------|-----------------------------|-------------|--------------------|
-| GET    | /api/dashboard/admin        | Admin       | Admin dashboard    |
-| GET    | /api/dashboard/store-owner  | Store Owner | Owner dashboard    |
-
-## Validation Rules
-
-| Field    | Rules                                                                 |
-|----------|-----------------------------------------------------------------------|
-| Name     | 20-60 characters                                                      |
-| Address  | Max 400 characters                                                    |
-| Password | 8-16 characters, 1 uppercase, 1 special character                   |
-| Email    | Standard email format                                                 |
-| Rating   | 1-5 (one rating per user per store)                                   |
-
-## User Roles & Features
-
-### Admin
-- Dashboard with total users, stores, and ratings
-- Create users, admins, and store owners
-- Create stores and assign owners
-- View/search/filter/sort all users and stores
-- View store average ratings
-
-### User
-- Register and login
-- Browse and search stores
-- Submit and update ratings (1-5 stars)
-- View own submitted ratings
-- Change password
-
-### Store Owner
-- Login and change password
-- View owned store average rating
-- View all users who rated the store
-- Dashboard with rating distribution
 
 ## Scripts
 
